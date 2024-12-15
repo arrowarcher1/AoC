@@ -39,8 +39,6 @@ public class solution {
                     }
                 }
             }
-                
-
         }
         System.out.println(safeCount1);
         System.out.println(safeCount1 + safeCount2);
@@ -61,34 +59,17 @@ public class solution {
     }
 
     public static boolean checkSkip(int[] vals, int indexToSkip, boolean isIncreasing){
-        int[] newVals = new int[vals.length - 1];
-        for (int i = 0, j = 0; i < vals.length; i++) {
-            if (i != indexToSkip) {
-                newVals[j++] = vals[i];
-            }
-        }
-        return validOrder(newVals, isIncreasing);
-    }
+        int curr = (indexToSkip == 0) ? vals[1] : vals[0];//start at 1 if 0, vise versa 
+        for(int i = (indexToSkip == 0 ? 2 : 1); i < vals.length; i++){ //If we skip index 0 we need to also shift the loop so we dont compare to itself
+            if(i == indexToSkip) continue;
+            int next = vals[i];
+            int comp = next - curr;
 
-    /*
-    private static boolean checkDecreasingSkip(int[] vals, int indexToSkip){
-        int[] newVals = new int[vals.length - 1];
-        for (int i = 0, j = 0; i < vals.length; i++) {
-            if (i != indexToSkip) {
-                newVals[j++] = vals[i];
-            }
+            if(Math.abs(comp) > 3 || (isIncreasing ? comp <= 0 : comp >= 0))
+                return false;
+            
+            curr = next;
         }
-        return checkDecreasing(newVals);
+        return true;
     }
-
-    private static boolean checkIncreasingSkip(int[] vals, int indexToSkip){
-        int[] newVals = new int[vals.length - 1];
-        for (int i = 0, j = 0; i < vals.length; i++) {
-            if (i != indexToSkip) {
-                newVals[j++] = vals[i];
-            }
-        }
-        return checkIncreasing(newVals);
-    }
-    */
 }
