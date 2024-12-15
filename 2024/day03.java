@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.IOException;
 
-public class solution {
+public class day03 {
     public static void main(String[] args){
         try{
             String input = Files.readString(Paths.get("input.txt"));

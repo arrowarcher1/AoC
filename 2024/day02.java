@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class solution {
+public class day02 {
     public static void main(String[] args) {
         try{
             BufferedReader read = new BufferedReader(new FileReader("input.txt"));

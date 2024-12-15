@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.util.Iterator;
 
 
-public class solution {
+public class day01 {
     public static void main(String[] args) {
         try{
             BufferedReader input = new BufferedReader(new FileReader("input.txt"));
