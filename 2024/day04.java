@@ -84,58 +84,32 @@ public class day04 {
         for(int r = 0; r < tRows; r++){
             for(int c = 0; c < tCols; c++){
                 if(grid[r][c] != 'A') continue;
-                boolean x1Valid = false;
-                boolean x2Valid = false;
-                
-                int[][] x1 = {
+
+                int[][] dirs = {
                     {-1, -1}, //Up Left
-                    {1, 1}//down right
-                };
-                int[][] x2 = {
+                    {1, 1},//down right
                     {1, -1},//down left
                     {-1, 1}//Up right
                 };
 
-                StringBuilder sb = new StringBuilder();
-                for(int dir[] : x1){
+                char characters[] = new char[4];
+                int charC = 0;
+
+                for(int dir[] : dirs){
                     int newRow = r + dir[0];
                     int newCol = c + dir[1];
 
                     if(newRow >= tRows || newRow < 0 || newCol >= tCols || newCol < 0){
-                        x1Valid = false;
+                        charC++;
                         break;
                     }
-                    sb.append(grid[newRow][newCol]);
+                    characters[charC] = grid[newRow][newCol];
+                    charC++;
                 }
 
-                String str = sb.toString();
-
-                if((str.compareTo("SM") == 0) || (str.compareTo("MS") == 0))
-                    x1Valid = true;
-                    
-
-
-                sb.setLength(0);
-                for(int dir[] : x2){
-                    int newRow = r + dir[0];
-                    int newCol = c + dir[1];
-
-                    if(newRow >= tRows || newRow < 0 || newCol >= tCols || newCol < 0){
-                        x2Valid = false;
-                        break;
-                    }
-                    sb.append(grid[newRow][newCol]);
-                }
-
-                str = sb.toString();
-                if((str.compareTo("SM") == 0) || (str.compareTo("MS") == 0))
-                    x2Valid = true;
-
-
-                if(x1Valid && x2Valid){
+                if(((characters[0] == 'M' && characters[1] == 'S') || (characters[0] == 'S' && characters[1] == 'M')) //Diag 1
+                && ((characters[2] == 'M' && characters[3] == 'S') || (characters[2] == 'S' && characters[3] == 'M'))) //Diag 2
                     count++;
-                    
-                }
             }
         }
         return count;
